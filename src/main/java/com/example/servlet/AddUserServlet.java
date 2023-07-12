@@ -14,7 +14,12 @@ import java.io.IOException;
 public class AddUserServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("jsp/add.jsp").forward(request, response);
+        try {
+            request.getRequestDispatcher("jsp/add.jsp").forward(request, response);
+        } catch (ServletException | IOException ex) {
+            ex.printStackTrace();
+        }
+
     }
 
     @Override
@@ -28,7 +33,10 @@ public class AddUserServlet extends HttpServlet {
 
         request.setAttribute("user", user);
 
-        request.getRequestDispatcher("jsp/add.jsp").forward(request, response);
-
+        try {
+            request.getRequestDispatcher("jsp/add.jsp").forward(request, response);
+        } catch (ServletException | IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }

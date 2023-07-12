@@ -19,6 +19,10 @@ public class GetUsersServlet extends HttpServlet {
         Set<User> users = Warehouse.getInstance().getUsers();
         request.setAttribute("users", users);
 
-        request.getRequestDispatcher("/jsp/users.jsp").forward(request, response);
+        try {
+            request.getRequestDispatcher("/jsp/users.jsp").forward(request, response);
+        } catch (ServletException | IOException ex) {
+            ex.printStackTrace();
+        }
     }
 }
